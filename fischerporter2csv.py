@@ -22,6 +22,7 @@ import tkFileDialog
 
 configcsv = 'station_config.csv'
 outputdir = os.getcwd() 
+
 current_time = datetime.utcnow()
 mnth = int(current_time.strftime('%m'))-1
 
@@ -32,6 +33,8 @@ if mnth == 0:
 else:
 	year = int(current_time.strftime('%Y'))
 
+tstamp = str(year)+'-'+str(mnth)
+ftstamp = datetime.strptime(tstamp,'%Y-%m')
 # Opening up the original CSV file and returning it to a list, skipping the
 # headers 
 def stationidentifier(filename):
@@ -189,8 +192,7 @@ def main():
 	statsdf[rcols] = statsdf[rcols].replace({'':np.nan})
 # Sorting the dataframe by the %Full then writing it to a file
 	finaldf = statsdf.sort_values('%Full',ascending=False)
-	finaldf.to_csv('Calculator-'+current_time.strftime('%Y-%B')+'.csv',index=False)
-
+	finaldf.to_csv('Calculator-'+ftstamp.strftime('%Y-%B')+'.csv',index=False)
 	print 'The script has finished please hit Enter to exit the program'
 	raw_input()
 main()
