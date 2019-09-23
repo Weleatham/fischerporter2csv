@@ -160,7 +160,7 @@ def main():
 	s.withdraw()
 	
 # Ask the user to select where the fischer porter .txt files are located
-	fischerdir = tkFileDialog.askdirectory(initialdir="F:\CPM\DATA\Fischer Porter Data\HPD",title='Please select where the fischer porter text files are located')
+	fischerdir = tkFileDialog.askdirectory(initialdir=outputdir,title='Please select where the fischer porter text files are located')
 
 	data = fischerdata(fischerdir)
 
@@ -191,4 +191,6 @@ def main():
 	finaldf = statsdf.sort_values('%Full',ascending=False)
 	finaldf.to_csv('Calculator-'+current_time.strftime('%Y-%B')+'.csv',index=False)
 
+	print 'The script has finished please hit Enter to exit the program'
+	raw_input()
 main()
